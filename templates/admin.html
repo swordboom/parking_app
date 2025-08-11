@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h3>Welcome to Admin Dashboard</h3>
+        </div>
+        <nav class="header-center">
+            <a href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+            <a href="{{ url_for('admin.view_users') }}">Users</a> 
+            <a href="{{ url_for('admin.view_parking_spots') }}">Search Spots</a>
+            <a href="{{ url_for('admin.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-links">
+    <ul>
+        <li>
+            <a href="{{ url_for('admin.add_parking') }}"><div>Add Parking Lot</div></a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.edit_parking') }}"><div>Edit Parking Lot</div></a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.view_parking_spots') }}"><div>View Parking Spots</div></a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.occupied_spot_details') }}"><div>Occupied Spot Details</div></a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.admin_summary') }}"><div>Summary Charts</div></a>
+        </li>
+    </ul>
+
+    </div>
+
+
+</body>
+</html>

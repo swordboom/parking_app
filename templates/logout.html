@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logging Out...</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="refresh" content="1;url={{ url_for('auth.login') }}">
+</head>
+<body>
+    <p>You are being logged out...</p>
+
+    <script>
+        window.onpageshow = function(event) {
+            if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+                window.location.href = "{{ url_for('auth.login') }}";
+            }
+        };
+    </script>
+</body>
+</html>

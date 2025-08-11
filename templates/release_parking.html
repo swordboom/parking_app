@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Release Parking</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('user.user_dashboard') }}">Home</a>
+            <a href="{{ url_for('user.user_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+        <div class="header-right">
+            <a href="{{ url_for('user.edit_profile') }}" class="edit-button">Edit Profile</a>
+        </div>
+    </header>
+    <h2>Release Your Parking Spot</h2>
+
+    <div style="width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc;
+    background: white; border-radius: 10px;">
+
+    <form action="{{ url_for('user.release_parking') }}" method="post">
+
+        <label for="booking_id">Select Active Booking to Release:</label>
+
+        <select name="booking_id" id="booking_id" required
+        style="width: 100%; white-space: nowrap; border-radius: 10px; padding: 8px; border: 1px solid #ccc;">
+
+            {% for booking in active_bookings %}
+            <option value="{{ booking.id }}" >
+                Lot: {{ booking.lot_name }} | Spot: {{ booking.spot_no or 'N/A' }} | Booked at: {{ booking.parking_timestamp }}
+            </option>
+            {% endfor %}
+
+        </select>
+        <button type="submit">Release</button>
+    </form>
+    </div>
+</body>
+</html>

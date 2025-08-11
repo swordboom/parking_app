@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Parking</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('user.user_dashboard') }}">Home</a>
+            <a href="{{ url_for('user.user_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+    <h2>Book Parking Spot</h2>
+    <div class="container" style="width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+    <form action="{{ url_for('user.book_parking') }}" method="post">
+        <label for="lot_id">Select Parking Lot:</label>
+        <select name="lot_id" id="lot_id" required>
+            {% for lot in lots %}
+            <option value="{{ lot.id }}">
+                {{ lot.prime_location_name }} - {{ lot.address }} (Available: {{ lot.availability }})
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="spot_id">Select Spot:</label>
+            <select name="spot_id" id="spot_id" required>
+                {% for spot in spots %}
+                <option value="{{ spot.id }}">
+                    {{ spot.spot_number }} (Lot {{ spot.lot_id }})
+                </option>
+                {% endfor %}
+            </select>
+
+        <label for="vehicle_type">Vehicle Type:</label>
+        <input type="text" id="vehicle_type" name="vehicle_type" placeholder="e.g., Sedan, SUV" required>
+
+        <label for="cost_per_unit_time">Cost per Unit Time (₹):</label>
+        <input type="number" id="cost_per_unit_time" name="cost_per_unit_time" min="1" step="0.01" required>
+
+        <button type="submit">Book</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Parking Spots</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+            <a href="{{ url_for('admin.view_users') }}">Users</a>
+            <a href="{{ url_for('admin.view_parking_spots') }}">Search Spots</a>
+            <a href="{{ url_for('admin.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <h2>Parking Spots</h2>
+
+    <!-- Search Form -->
+    <div style="display: flex; justify-content: center; margin: 20px 0;">
+        <form action="{{ url_for('admin.view_parking_spots') }}" method="get" style="display: flex; gap: 10px;">
+            <input type="text" name="query" placeholder="Search by lot name or status" value="{{ request.args.get('query','') }}"
+                   style="padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; width: 250px;">
+            <button type="submit" style="padding: 8px 15px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 14px; cursor: pointer;">
+                Search
+            </button>
+        </form>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        {% if spots %}
+        <table style="width: 100%; max-width: 800px; border-collapse: collapse; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <thead>
+                <tr style="background-color: #f8f8f8;">
+                    <th>Spot ID</th>
+                    <th>Lot Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for spot in spots %}
+                <tr>
+                    <td>{{ spot.id }}</td>
+                    <td>{{ spot.lot_name }}</td>
+                    <td>{{ spot.status }}</td>
+                    <td>
+                        {% if spot.status == 'A' %}
+                            <a href="{{ url_for('admin.delete_spot', spot_id=spot.id) }}">Delete</a>
+                        {% else %}
+                            <a href="#" style="background-color: #007bff;
+                                               color: #ccc; pointer-events: none; opacity: 0.6;
+                                               display: inline-block;
+                                               text-decoration: none;
+                                               font-size: 15px;
+                                               text-align: center;">
+                                Delete
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center; color: red;">No parking spots available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

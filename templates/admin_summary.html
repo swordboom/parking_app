@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+            <a href="{{ url_for('admin.view_users') }}">Users</a> {# Assuming a view_users route in admin_controller #}
+            <a href="{{ url_for('admin.view_parking_spots') }}">Search Spots</a>
+            <a href="{{ url_for('admin.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+    
+    <h2>Admin Summary</h2>
+    <canvas id="occupancyChart" width="400" height="200"></canvas>
+    <script>
+    const ctx = document.getElementById('occupancyChart');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels | tojson }},
+            datasets: [{
+                label: 'Occupancy per Lot',
+                data: {{ data | tojson }},
+                backgroundColor: 'rgba(75, 192, 192, 0.6)'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <h3>Welcome {{ name }}</h3>
+        </div>
+        <nav class="header-center">
+            <a href="{{ url_for('user.user_dashboard') }}">Home</a>
+            <a href="{{ url_for('user.user_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+        <div class="header-right">
+            <a href="{{ url_for('user.edit_profile') }}" class="edit-button">Edit Profile</a>
+        </div>
+    </header>
+
+    <div class="dashboard-content">
+        <div class="search-section">
+            <form action="{{ url_for('user.search_parking') }}" method="get">
+                <input type="text" name="query" placeholder="Search parking @ location/pin code" value="{{ search_query or '' }}" style="display: flex">
+                <button type="submit" style="margin: 0px; display: flex; align-items: center; justify-items: center;">Search</button>
+            </form>
+        </div>
+
+        <div class="parking-lots-section">
+            <h3>Parking Lots {% if search_query %}@ {{ search_query }}{% else %}Nearby{% endif %}</h3>
+            {% if lots %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Address</th>
+                        <th>Availability</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set ns = namespace(empty=true) %}
+                        {% for lot in lots %}
+                            {% if lot.maximum_number_of_spots > 0 %}
+                                {% set ns.empty = false %}
+                                <tr>
+                                    <td>{{ lot.id }}</td>
+                                    <td>{{ lot.address }}</td>
+                                    <td>{{ lot.maximum_number_of_spots }}</td>
+                                    <td><a href="{{ url_for('user.book_parking', lot_id=lot.id) }}">Book</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+
+                    {% if ns.empty %}
+                        <tr>
+                            <td colspan="4">No parking lots available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No parking lots found.</p>
+            {% endif %}
+        </div>
+
+        <div class="history-section">
+            <h3>Recent Parking History</h3>
+            {% if history %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Location</th>
+                        <th>Spot No</th>
+                        <th>Vehicle Type</th>
+                        <th>Parking Date & Time</th>
+                        <th>Leaving Date & Time</th>
+                        <th>Total Cost</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in history %}
+                    <tr>
+                        <td>{{ booking.id }}</td>
+                        <td>{{ booking.lot_name }}</td>
+                        <td>{{ booking.spot_number or 'N/A' }}</td>
+                        <td>{{ booking.vehicle_type or 'N/A' }}</td>
+                        <td>{{ booking.parking_timestamp }}</td>
+                        <td>{{ booking.leaving_timestamp or 'Currently Parked' }}</td>
+                        <td>₹{{ '%.2f' % (booking.total_cost or 0) }}</td>
+                        <td>
+                            {% if booking.is_active %}
+                            <a href="{{ url_for('user.release_parking', booking_id=booking.id) }}">Release</a>
+                            {% else %}
+                            Parked Out
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No parking history found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

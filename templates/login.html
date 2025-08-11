@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <div class="centered-page">
+    <div class="container">
+        <h1>Login</h1>
+        <form action="{{ url_for('auth.login') }}" method="post">
+            <label for="email">Registered Email ID:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <a href="{{ url_for('auth.signup') }}"
+            style="color: #007bff; text-decoration: none;"
+            onmouseover="this.style.color='#004998';"
+            onmouseout="this.style.color='#007bff';">
+            Create Account
+        </a>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p> {# This will display login errors from the backend #}
+        {% endif %}
+    </div>
+    </div>
+</body>
+</html>

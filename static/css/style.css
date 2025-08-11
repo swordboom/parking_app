@@ -1,0 +1,512 @@
+/* Basic body reset and global styles */
+body {
+    font-family: 'Inter', sans-serif; /* Recommended font */
+    margin: 0;
+    background: linear-gradient(to right, #d0e7ff, #e6f0ff);
+    padding: 0; /* Ensure no default body padding */
+    line-height: 1.6; /* Improve readability of text */
+    color: #333; /* Default text color */
+}
+
+@keyframes blueWave {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.centered-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: linear-gradient(270deg, #00aaff, #0099ff, #007bff, #3399ff, #66ccff);
+    background-size: 1000% 1000%;
+    animation: blueWave 6s ease infinite;
+
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+}
+
+
+/* Container for forms/content on centered pages */
+.container {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Softer, larger shadow */
+    width: 100%; /* Make it responsive */
+    max-width: 400px; /* Max width for larger screens */
+    box-sizing: border-box;
+}
+
+/* General button link style (e.g., on index.html) */
+.btn-link {
+    display: block;
+    width: 100%;
+    margin: 15px 0; /* Slightly more margin */
+    padding: 14px 0; /* Slightly more padding */
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Brighter blue gradient */
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(34, 134, 241, 0.3); /* Match new gradient color */
+    transition: all 0.3s ease; /* Smooth transition for all changes */
+    user-select: none;
+    border: none; /* Ensure no default button border if applied to button element */
+}
+
+.btn-link:hover {
+    background: linear-gradient(135deg, #0056b3, #003d7a); /* Darker on hover */
+    color : white;
+    box-shadow: 0 6px 15px rgba(0, 86, 179, 0.5); /* More pronounced shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    text-decoration: none;
+}
+
+/* Headings within containers */
+.container h1 {
+    margin-bottom: 20px; /* Increased margin for better spacing */
+    font-size: 28px; /* Slightly larger heading */
+    color: #222;
+}
+
+.container h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    font-weight: 500;
+    color: #555;
+    font-size: 18px; /* Consistent font size */
+}
+
+/* Select dropdown styling */
+.container select {
+    width: 100%;
+    padding: 12px 15px; /* Adjusted padding */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2C197.9c-3.6%2C3.6-7.8%2C5.4-12.8%2C5.4c-5%2C0-9.2-1.8-12.8-5.4L146.2%2C89.3L31%2C197.9c-3.6%2C3.6-7.8%2C5.4-12.8%2C5.4c-5%2C0-9.2-1.8-12.8-5.4c-7.2-7.2-7.2-18.4%2C0-25.6L133.4%2C61.1c3.6-3.6%2C7.8-5.4%2C12.8-5.4c5%2C0%2C9.2%2C1.8%2C12.8%2C5.4l115.8%2C111.2C294.2%2C179.5%2C294.2%2C190.7%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+.container select:hover {
+    border-color: #007bff; /* Match new gradient color */
+}
+
+.container select:focus {
+    border-color: #0056b3; /* Match new gradient color */
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4); /* More pronounced shadow */
+}
+
+/* General heading styles (for pages not using .container h1) */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px; /* Consistent margin */
+    font-size: 32px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+h3 {
+    color: #444;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+/* Form element styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add gap between form elements */
+}
+
+label {
+    margin: 0; /* Reset margin as gap handles spacing */
+    font-weight: bold;
+    color: #555;
+    font-size: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"], /* Added number type */
+textarea {
+    padding: 12px; /* Increased padding */
+    display: flex;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%; /* Ensure full width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* General button styling */
+button {
+    margin-top: 20px;
+    padding: 12px 20px; /* Adjusted padding */
+    display: flex;
+    justify-content: center;
+    background-color: #007bff; /* Consistent blue */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 17px; /* Slightly larger font */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px); /* Subtle lift */
+}
+
+/* Anchor tag styling (general) */
+a {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    color: #007bff; /* Consistent blue */
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s ease, transform 0.1s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+a:active {
+    color: #ccc;
+    transform: scale(0.97);
+}
+
+/* Header with Liquid Glass Effect */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.1); /* subtle transparent white */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px); /* for Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3); /* blue glow */
+    color: white;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    min-height: 60px; /* Ensure header has a minimum height */
+}
+
+
+/* Welcome Message */
+.header-left h3 {
+    margin: 0;
+    font-size: 22px;
+    white-space: nowrap;
+    color: #0044fe;
+}
+
+/* Navigation Links in Header */
+.header-center {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 25px;
+    color: #0044fe;
+    flex-wrap: wrap;
+}
+
+.header-center a {
+    color: #0044fe;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    margin: 0;
+    display: inline-block;
+}
+
+.header-center a:hover {
+    color: #4476ff;
+}
+
+/* Edit Button in Header */
+.header-right {
+    white-space: nowrap;
+}
+
+.edit-button {
+    background-color: #007bff; /* Blue */
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3);
+}
+
+.edit-button:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: translateY(-2px);
+    text-decoration: none; /* Prevent underline on hover */
+}
+
+/* Dashboard Specific Styles (for user and admin dashboards) */
+.dashboard-links {
+    padding: 30px;
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.dashboard-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid; /* Use grid for responsive layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Gap between grid items */
+}
+
+.dashboard-links li {
+    background-color: #e9ecef; /* Light grey background for list items */
+    position: relative;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.dashboard-links li:hover {
+    background-color: #dee2e6;
+    transform: translateY(-3px);
+}
+
+.dashboard-links li a {
+    text-decoration: none;
+    position: absolute;
+    inset : 0;
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 8px;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0; /* Reset margin from general 'a' style */
+}
+
+.dashboard-links li a:hover {
+    color: #0056b3;
+    text-decoration: none; /* Prevent underline on hover from general 'a' style */
+}
+
+/* User Dashboard Content Sections */
+.dashboard-content {
+    padding: 30px;
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between sections */
+}
+
+.search-section,
+.parking-lots-section,
+.history-section {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.search-section form {
+    flex-direction: row; /* Horizontal layout for search bar */
+    gap: 10px;
+}
+
+.search-section input[type="text"] {
+    flex-grow: 1; /* Input takes most space */
+    padding: 20px;
+    height: 50px; /* Adjusted height for better fit */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to content */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #007bff; /* Header background */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping */
+}
+
+table tbody tr:hover {
+    background-color: #eef; /* Subtle hover effect */
+}
+
+table td a {
+    display: inline-block; /* For action links in table */
+    margin: 0;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+table td a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Chart Canvas Styling */
+canvas {
+    max-width: 100%; /* Ensure responsiveness */
+    height: auto; /* Maintain aspect ratio */
+    margin: 20px auto;
+    display: block; /* Center the canvas */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-center {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .header-right {
+        margin-top: 10px;
+    }
+    .container {
+        padding: 25px 20px;
+    }
+    .dashboard-links ul {
+        grid-template-columns: 1fr; /* Stack items on small screens */
+    }
+    .search-section form {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    .container {
+        padding: 20px 15px;
+    }
+    .btn-link {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+    table th,
+    table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    .dashboard-content {
+        padding: 15px;
+    }
+}
+
+
+

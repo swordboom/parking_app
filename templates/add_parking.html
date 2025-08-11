@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Parking Lot</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+            <a href="{{ url_for('admin.view_users') }}">Users</a> 
+            <a href="{{ url_for('admin.view_parking_spots') }}">Search Spots</a>
+            <a href="{{ url_for('admin.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+    <h2>Add Parking Lot</h2>
+    <div class="container" style="width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+    <form action="{{ url_for('admin.add_parking') }}" method="post">
+        <label for="prime_location_name">Location Name:</label>
+        <input type="text" name="prime_location_name" placeholder="Location Name" required>
+        <label for="price">Price:</label>
+        <input type="text" name="price" placeholder="Price in Rs. " required>
+        <label for="address">Address:</label>
+        <input type="text" name="address" placeholder="Address" required>
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" name="pincode" pattern="\d{6}" maxlength="6" placeholder="6-digit PIN code" title="Please enter a 6-digit PIN code" required>
+        <label for="maximum_number_of_spots">Number of Spots Available:</label>
+        <input type="number" name="maximum_number_of_spots" placeholder="Number of Spots" required>
+        <button type="submit">Add Lot</button>
+    </form>
+    </div>
+</body>
+</html>

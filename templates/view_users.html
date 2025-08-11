@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View User Data</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+            <a href="{{ url_for('admin.view_users') }}">Users</a> 
+            <a href="{{ url_for('admin.view_parking_spots') }}">Search Spots</a>
+            <a href="{{ url_for('admin.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+    <h2>User Data</h2>
+    <div style="display: flex; justify-content: center;">
+        <table style="width: 100%; max-width: 800px; border-collapse: collapse; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Email</th>
+                    <th>Full Name</th>
+                    <th>Address</th>
+                    <th>Pincode</th>
+                    <th>Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.user_id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.address }}</td>
+                    <td>{{ user.pincode }}</td>
+                    <td>₹{{ "%.2f"|format(user.revenue or 0) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

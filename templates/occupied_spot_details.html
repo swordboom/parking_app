@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Occupied Spot Details</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+            <a href="{{ url_for('admin.view_users') }}">Users</a> 
+            <a href="{{ url_for('admin.view_parking_spots') }}">Search Spots</a>
+            <a href="{{ url_for('admin.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+    
+    <h2>Occupied Parking Spots</h2>
+    <div style="display: flex; justify-content: center; padding: 20px;">
+        {% if bookings %}
+        <table style="width: 100%; max-width: 800px; border-collapse: collapse; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <thead>
+                <tr>
+                    <th>Spot ID</th>
+                    <th>User</th>
+                    <th>Lot ID</th>
+                    <th>Lot Name</th>
+                    <th>Time Booked</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.spot_id }}</td>
+                    <td>{{ booking.user }}</td>
+                    <td>{{ booking.lot_id }}</td>
+                    <td>{{ booking.lot_name }}</td>
+                    <td>{{ booking.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center; color: red;">No occupied parking spots available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

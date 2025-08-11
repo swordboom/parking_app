@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+<body>
+    <header class="header">
+        <nav class="header-center">
+            <a href="{{ url_for('user.user_dashboard') }}">Home</a>
+            <a href="{{ url_for('user.user_summary') }}">Summary</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <h2>Your Parking Usage Summary</h2>
+
+    {% if labels and data %}
+    <div style="width: 80%; height: 400px; margin: auto;">
+    <canvas id="usageChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('usageChart');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: {{ labels|safe }},
+                datasets: [{
+                    label: 'Bookings per Lot',
+                    data: {{ data|safe }},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top', // Added semicolon here
+                    },
+                    title: {
+                        display: true,
+                        text: 'Parking Usage by Lot'
+                    }
+                }
+            }
+        });
+    </script>
+    {% else %}
+    <p>No parking usage data available.</p>
+    {% endif %}
+</body>
+</html>
