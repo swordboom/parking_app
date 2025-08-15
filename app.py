@@ -9,6 +9,7 @@ from controllers.user_controller import user_bp
 from controllers.auth_controller import auth_bp
 from models.parking_model import init_db
 
+#using flask 
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 
