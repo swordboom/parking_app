@@ -30,5 +30,28 @@ def close_db(error):
     if db is not None:
         db.close()
 
+
+# ---------------- NO TIMEOUT BLOCK FOR RENDER ----------------
+import threading
+import time
+import requests
+
+@app.route("/ping")
+def ping():
+    return "pong"
+
+def keep_alive():
+    while True:
+        try:
+            url = os.environ.get("RENDER_EXTERNAL_URL")
+            if url:
+                requests.get(f"{url}/ping")
+        except Exception:
+            pass
+        time.sleep(600)  # 10 minutes
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    threading.Thread(target=keep_alive, daemon=True).start()
+    app.run(host="0.0.0.0", port=port, debug=False)
