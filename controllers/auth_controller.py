@@ -7,8 +7,7 @@ import bcrypt
 auth_bp = Blueprint('auth', __name__)
 
 ADMIN_EMAIL = "admin@example.com"
-ADMIN_PASSWORD = "$2b$12$kqbu0btoXGkbuC8wdtZhIuzz8GuAiduYiSugTv17P8dhFqTuTQvWe"  # bcrypt hash for 'admin'
-
+ADMIN_PASSWORD = "$2b$12$kqbu0btoXGkbuC8wdtZhIuzz8GuAiduYiSugTv17P8dhFqTuTQvWe"
 def nocache(view):
     @wraps(view)
     def no_cache(*args, **kwargs):
@@ -52,7 +51,7 @@ def login():
             return redirect(url_for('admin.admin_dashboard'))
 
         user = get_user_by_email(email)
-        if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
+        if user and bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
             session['user_id'] = user['user_id']
             session['username'] = user['email']
             session.permanent = True
