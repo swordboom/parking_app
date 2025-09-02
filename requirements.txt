@@ -2,3 +2,4 @@ flask
 gunicorn
 bcrypt
 jinja2
+requests
