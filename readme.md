@@ -6,6 +6,7 @@ The **Parking Vehicle App** is a multi-user web application built using Flask th
 ---
 
 ## Project Structure
+```
 parking_app/
 │
 ├── controllers/             # Flask Blueprints for routes
@@ -38,36 +39,50 @@ parking_app/
 ├── app.py                   # Main Flask entry point
 ├── requirements.txt         # Python dependencies
 ├── README.txt               # Documentation (this file)
-
+```
 ---
 
 ## How to Run Locally
 
 ### 1. Clone the repository
+```
 git clone https://github.com/your-username/parking-app.git
 cd parking-app
+```
 
 ### 2. Create a virtual environment
+```
 python -m venv venv
+```
 
 ### 3. Activate the virtual environment
+```
 - On Windows:
 venv\Scripts\activate
 - On Mac/Linux:
 source venv/bin/activate
+```
 
 ### 4. Install dependencies
+```
 pip install -r requirements.txt
+```
 
 ### 5. Initialize database
+```
 Make sure `parking.db` exists in the `database/` folder.  
 If not, create it using the schema in `parking_model.py`.
+```
 
 ### 6. Run the Flask server
+```
 python app.py
+```
 
 ### 7. Open in browser
-http://127.0.0.1:5000
+```
+http://127.0.0.1:localhost
+```
 
 ---
 
@@ -97,4 +112,6 @@ http://127.0.0.1:5000
 ---
 
 ## Deployed Website
+```
 - https://parking-app-qyns.onrender.com
+```
